@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #d3d3d3; /* Warna abu-abu */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Overlay blur */
+        .overlay-blur {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+            backdrop-filter: blur(20px); /* Meningkatkan kekuatan blur */
+            z-index: 1; /* Di atas background blur dan di bawah modal */
+        }
+
+        .header {
+            width: 100%;
+            background-color: #a9a9a9; /* Warna abu-abu lebih tua */
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            z-index: 2; /* Membuat header berada di atas konten lainnya */
+        }
+
+        .header h1 {
+            margin: 0;
+            color: #fff; /* Warna teks putih */
+        }
+
+        .sub-header {
+            margin-top: 10px;
+            font-size: 24px;
+            font-weight: normal;
+            color: #fff; /* Warna teks putih */
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 100px; /* Memberi jarak di bawah header */
+            padding: 10px;
+        }
+
+        .box {
+            background-color: white;
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            flex-grow: 1;
+            max-width: 300px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .box img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .box .name {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .box a {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .box a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 3; /* Menempatkan modal di atas overlay */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5); 
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+            max-width: 800px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .modal-content img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .modal-content div {
+            text-align: left;
+            max-width: 100%;
+        }
+
+        .close {
+            color: #aaa;
+            align-self: flex-end;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+        .instagram-button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #E4405F;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .instagram-button:hover {
+            background-color: #C13584;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                flex-direction: column; /* Ubah ke kolom pada perangkat kecil */
+                width: 90%; /* Lebar modal pada perangkat kecil */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay-blur" id="overlay"></div> <!-- Overlay blur -->
+
+    <div class="header">
+        <h1>KELOMPOK 8</h1>
+        <div class="sub-header">BIODATA</div>
+    </div>
+    
+    <div class="container">
+        <div class="box">
+            <img src="https://i.imgur.com/rIq8D7w.jpeg" alt="Profile 1">
+            <div class="name">Moh. Imam Hidayatullah</div>
+            <a href="#" onclick="showBio('Moh. Imam Hidayatullah', '2023520059', 'Fakultas Teknik', 'Pamekasan, 09 Maret 2023', 'Jl. Raya Larangan Badung', 'Teruslah meraba masa depan, walaupun ketidak pastian yang sedang menunggu di depan!', 'https://i.imgur.com/rIq8D7w.jpeg', 'https://www.instagram.com/imam.exe_?igsh=YThuZ3NmdnU4N2Uz&utm_source=qr')">Show Biodata</a>
+        </div>
+        <div class="box">
+            <img src="https://i.imgur.com/Wn78KzX.jpeg" alt="Profile 2">
+            <div class="name">Akmal</div>
+            <a href="#" onclick="showBio('Akmal', '2023520059', 'Fakultas Teknik', 'Pamekasan, 13 Maret 2005', 'Jl. Jembatan Baru', 'Tak meledak tak jago meledak bumma.', 'https://i.imgur.com/Wn78KzX.jpeg', 'https://www.instagram.com/akmalkuddah?igsh=dDNubzFjZXA4dHgy')">Show Biodata</a>
+        </div>
+        <div class="box">
+            <img src="https://i.imgur.com/cNz59XS.jpeg" alt="Profile 3">
+            <div class="name">Muhammad Fadli</div>
+            <a href="#" onclick="showBio('Muhammad Fadli', '2023520059', 'Fakultas Teknik', 'Sampang, 20 November 2004', 'Sokobana, sampang', 'Simple style perfect skill.', 'https://i.imgur.com/cNz59XS.jpeg', 'https://www.instagram.com/akmalkuddah?igsh=dDNubzFjZXA4dHgy')">Show Biodata</a>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modal-image" src="" alt="Profile Image">
+            <div>
+                <h2 id="modal-name"></h2>
+                <p id="modal-nim"></p>
+                <p id="modal-faculty"></p>
+                <p id="modal-birthdate"></p>
+                <p id="modal-address"></p>
+                <p id="modal-motivation"></p>
+                <a id="instagram-link" class="instagram-button" href="" target="_blank">Visit My Instagram</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showBio(name, nim, faculty, birthdate, address, motivation, imageUrl, instagramUrl) {
+            document.getElementById('modal-name').innerText = 'Nama: ' + name;
+            document.getElementById('modal-nim').innerText = 'NIM: ' + nim;
+            document.getElementById('modal-faculty').innerText = 'Fakultas: ' + faculty;
+            document.getElementById('modal-birthdate').innerText = 'Tempat, Tanggal Lahir: ' + birthdate;
+            document.getElementById('modal-address').innerText = 'Alamat: ' + address;
+            document.getElementById('modal-motivation').innerText = 'Kata-kata Motivasi: ' + motivation;
+            document.getElementById('modal-image').src = imageUrl;
+            document.getElementById('instagram-link').href = instagramUrl;
+            document.getElementById('myModal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block'; // Menampilkan overlay blur
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none'; // Menyembunyikan overlay blur
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('myModal')) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
